@@ -12,7 +12,7 @@ const code = localFont({
 
 export default function Home() {
   return (
-    <div className={`min-h-screen w-full bg-zinc-50 font-code ${code.variable}`}>
+    <div className={`relative min-h-screen w-full bg-zinc-50 font-code ${code.variable}`}>
       <Header></Header>
       <Main></Main>
       <Footer></Footer>
