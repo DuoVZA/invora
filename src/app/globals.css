@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --font-code: var(--font-code), monospace;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
