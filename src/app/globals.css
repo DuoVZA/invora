@@ -28,3 +28,16 @@ body {
   color: var(--foreground);
   font-family: var(--font-code), monospace;
 }
+
+@layer utilities {
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .perspective {
+    perspective: 1000px;
+  }
+}

@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
 const codeFont = localFont({
   src: "../../public/fonts/CascadiaCode-VariableFont_wght.ttf",
