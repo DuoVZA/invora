@@ -1,4 +1,5 @@
 'use client';
+import Link from "next/link";
 import { useState } from "react";
 
 type CurrencyVal = "Євро" | "Долари" | "Гривні";
@@ -46,7 +47,9 @@ export default function Header() {
 
     return (
         <div className="sticky top-0 z-50 flex flex-row justify-center items-center gap-[45px] bg-zinc-50 w-full h-[87px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] text-[#919191] text-[15px]">
-            <img src="/pictures/invora_logo.png" alt="Invora Logo" className="w-[124px]" />
+            <Link href="/">
+                <img src="/pictures/invora_logo.png" alt="Invora Logo" className="w-[124px]" />
+            </Link>
 
             <div className="flex items-center gap-[5px]">
                 <img src="/pictures/question_mark.png" alt="Question Mark" className="w-[18px] h-[18px]" />
@@ -76,9 +79,12 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-[12px]">
-                <button className="bg-none border border-[#919191] text-[#919191] rounded py-1 px-3 hover:bg-zinc-100 transition-colors">
-                    <p>Увійти</p>
-                </button>
+                <Link
+                    href="/login"
+                    className="bg-none border border-[#919191] text-[#919191] rounded py-1 px-3 hover:bg-zinc-100 transition-colors inline-block text-center"
+                >
+                    Увійти
+                </Link>
                 <button className="bg-[#4384D0] text-[#FFFFFF] rounded py-1 px-3 hover:bg-[#3b75ba] transition-colors">
                     <p>Зареєструватися</p>
                 </button>

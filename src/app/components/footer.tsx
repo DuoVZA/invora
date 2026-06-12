@@ -7,7 +7,7 @@ export default function Footer() {
                 <p>Політика cookie</p>
                 <p>Контакти</p>
             </div>
-            <div className="flex flex-column gap-[26px]">
+            <div className="flex flex-row gap-[26px]">
                 <img src="/pictures/telegram_logo.png" alt="Telegram" />
                 <img src="/pictures/youtube_logo.png" alt="YouTube" />
             </div>
