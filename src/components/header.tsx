@@ -3,11 +3,16 @@ import Link from "next/link";
 import { useState } from "react";
 
 type CurrencyVal = "Євро" | "Долари" | "Гривні";
-type CurrencyLang = "Українською" | "Англійською";
+type CurrencyLang = "Українською" | "English";
 
 interface LangOption {
     name: CurrencyLang;
     flag: string;
+}
+
+interface HelpOption {
+    name: string;
+    href: string;
 }
 
 export default function Header() {
@@ -15,6 +20,7 @@ export default function Header() {
 
     const [isValOpen, setIsValOpen] = useState(false);
     const [isLanOpen, setIsLanOpen] = useState(false);
+    const [isHelpOpen, setIsHelpOpen] = useState(false); // Состояние для дропдауна помощи
 
     const [selectedVal, setSelectedVal] = useState<CurrencyVal>("Євро");
 
@@ -27,7 +33,13 @@ export default function Header() {
 
     const allCurrenciesLan: LangOption[] = [
         { name: "Українською", flag: "/pictures/ukraine_flag.png" },
-        { name: "Англійською", flag: "/pictures/england_flag.png" }
+        { name: "English", flag: "/pictures/england_flag.png" }
+    ];
+
+    const helpOptions: HelpOption[] = [
+        { name: "Правила", href: "/help/faq" },
+        { name: "Центр допомоги", href: "/help/support" },
+        { name: "Відправити запит", href: "/help/rules" }
     ];
 
     const currenciesValToShow = allCurrenciesVal.filter(currencyV => currencyV !== selectedVal);
@@ -51,10 +63,39 @@ export default function Header() {
                 <img src="/pictures/invora_logo.png" alt="Invora Logo" className="w-[124px]" />
             </Link>
 
-            <div className="flex items-center gap-[5px]">
-                <img src="/pictures/question_mark.png" alt="Question Mark" className="w-[18px] h-[18px]" />
-                <p>Допомога</p>
-                <img src="/vectors/arrow.svg" alt="Arrow" className="w-[9px] h-[4px]" />
+            {/* Дропдаун "Допомога" */}
+            <div className="relative inline-block text-left">
+                <button 
+                    onClick={() => {
+                        setIsHelpOpen(!isHelpOpen);
+                        setIsLanOpen(false);
+                        setIsValOpen(false);
+                    }}
+                    className="flex items-center gap-[5px] text-[#919191] text-[15px] hover:text-zinc-800 hover:cursor-pointer transition-colors"
+                >
+                    <img src="/pictures/question_mark.png" alt="Question Mark" className="w-[18px] h-[18px]" />
+                    <p>Допомога</p>
+                    <img 
+                        src="/vectors/arrow.svg" 
+                        alt="Arrow" 
+                        className={`w-[9px] h-[4px] transition-transform duration-200 ${isHelpOpen ? "rotate-180" : ""}`} 
+                    />
+                </button>
+
+                {isHelpOpen && (
+                    <div className="absolute left-0 mt-2 w-[200px] bg-white border border-zinc-200 rounded-xl shadow-lg overflow-hidden z-50">
+                        {helpOptions.map((option) => (
+                            <Link
+                                key={option.href}
+                                href={option.href}
+                                onClick={() => setIsHelpOpen(false)}
+                                className="block w-full text-left px-4 py-2 text-[14px] text-zinc-800 hover:bg-zinc-100 transition-colors"
+                            >
+                                {option.name}
+                            </Link>
+                        ))}
+                    </div>
+                )}
             </div>
 
             <div className="flex items-center w-full max-w-[437px] h-[30px] border border-[#A4A4A4] rounded-full px-3 bg-white font-code relative">
@@ -98,8 +139,9 @@ export default function Header() {
                         onClick={() => {
                             setIsLanOpen(!isLanOpen);
                             setIsValOpen(false);
+                            setIsHelpOpen(false);
                         }}
-                        className="flex items-center gap-2 text-[#919191] text-[15px] hover:text-zinc-800 transition-colors"
+                        className="flex items-center gap-2 text-[#919191] text-[15px] hover:text-zinc-800 hover:cursor-pointer transition-colors"
                     >
                         <span>{selectedLan.name}</span>
                         <img src={selectedLan.flag} alt="" className="w-[18px] h-[18px] object-cover rounded-sm" />
@@ -116,10 +158,10 @@ export default function Header() {
                                 <button
                                     key={lang.name}
                                     onClick={() => handleSelectL(lang)}
-                                    className="w-full flex items-center gap-2 text-left px-4 py-2 text-[14px] text-zinc-800 hover:bg-zinc-100 transition-colors"
+                                    className="hover:cursor-pointer w-full flex items-center gap-2 text-left px-4 py-2 text-[14px] text-zinc-800 hover:bg-zinc-100 transition-colors"
                                 >
-                                    <img src={lang.flag} alt="" className="w-[18px] h-[18px] object-cover rounded-sm" />
                                     <span>{lang.name}</span>
+                                    <img src={lang.flag} alt="" className="w-[18px] h-[18px] object-cover rounded-sm" />
                                 </button>
                             ))}
                         </div>
@@ -133,8 +175,9 @@ export default function Header() {
                         onClick={() => {
                             setIsValOpen(!isValOpen);
                             setIsLanOpen(false);
+                            setIsHelpOpen(false);
                         }}
-                        className="flex items-center gap-1 text-[#919191] text-[15px] hover:text-zinc-800 transition-colors"
+                        className="flex items-center gap-1 text-[#919191] text-[15px] hover:text-zinc-800 hover:cursor-pointer transition-colors"
                     >
                         <span>{selectedVal}</span>
                         <img
@@ -150,7 +193,7 @@ export default function Header() {
                                 <button
                                     key={currencyV}
                                     onClick={() => handleSelectV(currencyV)}
-                                    className="w-full text-left px-4 py-2 text-[14px] text-zinc-800 hover:bg-zinc-100 transition-colors first:border-b first:border-zinc-100"
+                                    className="hover:cursor-pointer w-full text-left px-4 py-2 text-[14px] text-zinc-800 hover:bg-zinc-100 transition-colors first:border-b first:border-zinc-100"
                                 >
                                     {currencyV}
                                 </button>

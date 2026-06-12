@@ -21,11 +21,11 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body className={`relative min-h-screen w-full bg-zinc-50 ${codeFont.className} ${codeFont.variable}`}>
-        <Header />
+        <Header/>
 
         <main>{children}</main>
 
-        <Footer />
+        <Footer/>
       </body>
     </html>
   );
