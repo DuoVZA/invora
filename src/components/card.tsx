@@ -34,22 +34,28 @@ export function Card({ image, name, gradient, buttons, isFlipped, onFlip }: Prop
     }, [isFlipped, localFlipped]);
 
     return (
+        /* Внешний контейнер теперь выступает стабильным невидимым каркасом.
+           Это убирает любые баги с "отваливающимися" белыми блоками по бокам. */
         <div 
             onClick={(e) => {
                 e.stopPropagation(); 
                 onFlip();
             }}
-            className={`w-[185px] h-[245px] cursor-pointer select-none transition-all duration-300 ease-out rounded-[13px]
-                ${isFlipped 
-                    ? "-translate-y-2 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.3),0_10px_10px_-5px_rgba(0,0,0,0.2)]" 
-                    : "shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-2px_rgba(0,0,0,0.05)]"
-                }
-            `}
+            className="w-[185px] h-[245px] select-none"
         >
+            {/* Вся магия здесь: тени, подъем, скругления углов и схлопывание по оси X 
+                работают строго на одном и том же элементе. */ }
             <div 
-                className={`w-full h-full transition-all duration-[150ms] ease-in-out ${
-                    isAnimating ? "scale-x-0" : "scale-x-100"
-                }`}
+                className={`w-full h-full cursor-pointer rounded-[13px] transition-all box-border
+                    ${isAnimating 
+                        ? "scale-x-0 duration-[150ms] ease-in-out" 
+                        : "scale-x-100 duration-300 ease-out"
+                    }
+                    ${isFlipped 
+                        ? "-translate-y-2 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.3),0_10px_10px_-5px_rgba(0,0,0,0.2)]" 
+                        : "shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-1px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-2px_rgba(0,0,0,0.05)]"
+                    }
+                `}
             >
                 {!localFlipped ? (
                     <div className="w-full h-full rounded-[13px] overflow-hidden">

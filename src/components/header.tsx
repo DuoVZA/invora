@@ -37,9 +37,9 @@ export default function Header() {
     ];
 
     const helpOptions: HelpOption[] = [
-        { name: "Правила", href: "/help/faq" },
-        { name: "Центр допомоги", href: "/help/support" },
-        { name: "Відправити запит", href: "/help/rules" }
+        { name: "Правила", href: "/help/rules" },
+        { name: "Центр допомоги", href: "/help/help-center" },
+        { name: "Відправити запит", href: "/help/request" }
     ];
 
     const currenciesValToShow = allCurrenciesVal.filter(currencyV => currencyV !== selectedVal);
@@ -63,7 +63,6 @@ export default function Header() {
                 <img src="/pictures/invora_logo.png" alt="Invora Logo" className="w-[124px]" />
             </Link>
 
-            {/* Дропдаун "Допомога" */}
             <div className="relative inline-block text-left">
                 <button 
                     onClick={() => {

@@ -17,7 +17,7 @@ export default function Main() {
 
     const fullDatabase = [...gameDatabase];
 
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ".split("");
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
     const scrollToLetter = (letter: string) => {
         const element = document.getElementById(`section-${letter}`);
@@ -43,8 +43,8 @@ export default function Main() {
     return (
         <div className="flex max-w-[1300px] mx-auto w-full px-4 gap-[20px] mt-[56px] mb-[56px]">
 
-            <aside className="hidden sm:block fixed top-[20%] left-[1%] h-fit z-50">
-                <div className="grid grid-cols-3 gap-x-2 gap-y-1 w-[100px] text-[12px] font-bold text-[#4384D0]">
+            <aside className="hidden sm:block fixed top-[15%] left-[1%] h-fit z-50">
+                <div className="grid grid-cols-1 gap-x-2 gap-y-1 w-[25px] pl-[160%] text-[12px] font-bold text-[#4384D0]">
                     {letters.map((letter) => (
                         <button
                             key={letter}
@@ -59,10 +59,10 @@ export default function Main() {
 
             <div className="flex-1 flex flex-col gap-8">
                 {existingLetters.map((letter) => (
-                    <div key={letter} id={`section-${letter}`} className="flex flex-col gap-4 scroll-mt-6">
+                    <div key={letter} id={`section-${letter}`} className="flex flex-col gap-4 scroll-mt-27">
 
                         <div className="flex justify-start">
-                            <div className="w-6 h-6 flex items-center justify-center text-[#919191] text-xs font-bold select-none">
+                            <div className="w-6 h-6 flex items-center justify-center text-[#919191] text-m font-bold select-none">
                                 {letter}
                             </div>
                         </div>

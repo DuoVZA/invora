@@ -439,7 +439,7 @@ export const gameDatabase: GameItem[] = [
     },
 
     {
-        name: "Герої Меча та Магії III",
+        name: "Heroes of Sword and Magic III",
         image: "/pictures/heroes_3.png",       
         gradient: "from-[#0f172a] via-[#1e3a8a] to-[#ca8a04]",
         buttons: [
@@ -448,9 +448,8 @@ export const gameDatabase: GameItem[] = [
         ]
     },
     {
-        name: "Метро: Вихід",
+        name: "Metro: Exodus",
         image: "/pictures/metro_exodus.png",
-        // Постапокалиптическая зима и радиация: от глубокой ледяной тени к грязно-желтому зимнему солнцу
         gradient: "from-[#090d16] via-[#1e293b] to-[#854d0e]",
         buttons: [
             { text: "Ключі / Гіфти", onClick: () => console.log("Метро: Ключі") },
@@ -459,15 +458,36 @@ export const gameDatabase: GameItem[] = [
         ]
     },
     {
-        name: "Сталкер 2: Серце Чорнобиля",
+        name: "Stalker 2: Heart of Chornobyl",
         image: "/pictures/stalker_2.png",
-        // Мрачная атмосфера Чернобыльской Зоны: от угольной тьмы к радиоактивному ржаво-оранжевому свечению аномалий
         gradient: "from-[#0c0a09] via-[#451a03] to-[#c2410c]",
         buttons: [
             { text: "Передзамовлення", onClick: () => console.log("Сталкер 2: Передзамовлення") },
             { text: "Ключі (Steam)", onClick: () => console.log("Сталкер 2: Ключі") },
             { text: "Xbox Game Pass", onClick: () => console.log("Сталкер 2: Game Pass") },
             { text: "Інше", onClick: () => console.log("Сталкер 2: Інше") }
+        ]
+    },
+    {
+        name: "Stalcraft",
+        image: "/pictures/stalcraft.png",
+        gradient: "from-[#0084CC] to-[#000241]",
+        buttons: [
+            { text: "Аккаунти", onClick: () => console.log("Сталкрафт: Аккаунти") },
+            { text: "Артефакти", onClick: () => console.log("Сталкрафт: Артефакти") },
+            { text: "Речі", onClick: () => console.log("Сталкрафт: Речі") },
+            { text: "Інше", onClick: () => console.log("Сталкрафт: Інше") }
+        ]
+    },
+    {
+        name: "Dead by Daylight",
+        image: "/pictures/dbd.png",
+        gradient: "from-[#006C7B] to-[#190028]",
+        buttons: [
+            { text: "Аккаунти", onClick: () => console.log("Сталкрафт: Аккаунти") },
+            { text: "Ключі", onClick: () => console.log("Сталкрафт: Ключі") },
+            { text: "Навчання", onClick: () => console.log("Сталкрафт: Навчання") },
+            { text: "Інше", onClick: () => console.log("Сталкрафт: Інше") }
         ]
     }
 ];
