@@ -13,6 +13,7 @@ interface LangOption {
 interface HelpOption {
     name: string;
     href: string;
+    index: number;
 }
 
 export default function Header() {
@@ -37,9 +38,9 @@ export default function Header() {
     ];
 
     const helpOptions: HelpOption[] = [
-        { name: "Правила", href: "/help/rules" },
-        { name: "Центр допомоги", href: "/help/help-center" },
-        { name: "Відправити запит", href: "/help/request" }
+        { name: "Правила", href: "/help/rules", index: 0 },
+        { name: "Центр допомоги", href: "/coming-soon", index: 1 },
+        { name: "Відправити запит", href: "/coming-soon", index: 2 }
     ];
 
     const currenciesValToShow = allCurrenciesVal.filter(currencyV => currencyV !== selectedVal);
@@ -85,7 +86,7 @@ export default function Header() {
                     <div className="absolute left-0 mt-2 w-[200px] bg-white border border-zinc-200 rounded-xl shadow-lg overflow-hidden z-50">
                         {helpOptions.map((option) => (
                             <Link
-                                key={option.href}
+                                key={`${option.href}-${option.index}`}
                                 href={option.href}
                                 onClick={() => setIsHelpOpen(false)}
                                 className="block w-full text-left px-4 py-2 text-[14px] text-zinc-800 hover:bg-zinc-100 transition-colors"
