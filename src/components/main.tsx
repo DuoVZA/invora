@@ -49,7 +49,7 @@ export default function Main() {
                         <button
                             key={letter}
                             onClick={() => scrollToLetter(letter)}
-                            className="hover:text-white hover:bg-[#4384D0] hover:rounded-sm hover:scale-95 transition-all w-full text-center cursor-pointer"
+                            className="hover:text-white hover:bg-[#4384D0] hover:rounded-sm hover:scale-95 transition-all w-[25px] text-center cursor-pointer"
                         >
                             {letter}
                         </button>
