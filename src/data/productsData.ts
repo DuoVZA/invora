@@ -9,6 +9,7 @@ export interface ProductItem {
     description: string;
     seller: string;
     sellerRating: string;
+    productCount: number;
     reviewsCount: number;
     price: string;
 }
@@ -16,36 +17,36 @@ export interface ProductItem {
 // 1. Шаблони для генерації реалістичного контенту залежно від типу категорії
 const sellers = ["FunPay_Master", "GamerStore", "DonatGold", "GSC_Fan", "CyberBro", "ShadowTrade", "Phoenix_Shop", "LuckySeller", "DropXpress", "WukongGold"];
 
-const templates: { [key: string]: { titles: string[], descriptions: string[], priceMin: number, priceMax: number, unit: string } } = {
+const templates: { [key: string]: { titles: string[], descriptions: string[], priceMin: number, priceMax: number, unit: string, counts: number } } = {
     "ключі": {
         titles: ["Ліцензійний ключ [Global / Region Free] Fast Delivery", "Офіційний ключ активації (Steam/Epic/EA)", "Ключ активації моментально + Бонус передзамовлення"],
         descriptions: ["Після оплати ви моментально отримуєте ліцензійний ключ активації. Чиста покупка, без повернень. Активація на ваш особистий акаунт."],
-        priceMin: 350, priceMax: 1900, unit: "₴"
+        priceMin: 350, priceMax: 1900, unit: "₴", counts: 10
     },
     "аккаунти": {
         titles: ["Особистий акаунт з повною переприв'язкою (Пошта + Зміна даних)", "Топовий жирний акаунт | Без банів | З поштою", "Акаунт під основу | Перша пошта | Рідні дані"],
         descriptions: ["Продаю свій особистий акаунт, награно багато годин. Жодних блокувань, повна безпека. Допоможу переприв'язати всі дані після покупки."],
-        priceMin: 150, priceMax: 3500, unit: "₴"
+        priceMin: 150, priceMax: 3500, unit: "₴", counts: 100
     },
     "донат": {
         titles: ["Офіційний Донат за ID гравця (Без заходу на акаунт)", "Поповнення внутрішньоігрової валюти | Швидко 5 хвилин", "Донат пак за найнижчими цінами [Safe & Fast]"],
         descriptions: ["Абсолютно безпечне поповнення через офіційних партнерів. Від вас потрібен тільки ваш ігровий ID/UID. Гарантія від бану 100%."],
-        priceMin: 80, priceMax: 2500, unit: "₴"
+        priceMin: 80, priceMax: 2500, unit: "₴", counts: 2
     },
     "послуги": {
         titles: ["Професійна допомога / Прокачування / Виконання квестів", "Швидкий буст та закриття будь-якої активності", "Послуги тренера | Навчання гри від топ-гравця"],
         descriptions: ["Виконаю будь-які складні завдання, закрию квести або пройду калібрування. Граю сам без стороннього софту. Стрім за бажанням."],
-        priceMin: 200, priceMax: 1200, unit: "₴"
+        priceMin: 200, priceMax: 1200, unit: "₴", counts: 34
     },
     "офлайн": {
         titles: ["Офлайн Активація | Доступ до всіх DLC | Гарантія", "Offline доступ для ПК (Steam/Epic) без лімітів", "Активація гри для автономного режиму + Оновлення"],
         descriptions: ["Надаю доступ до акаунта для гри в автономному режимі. Усі збереження будуть ваші. Доступ безстроковий, грати можна одразу."],
-        priceMin: 45, priceMax: 150, unit: "₴"
+        priceMin: 45, priceMax: 150, unit: "₴", counts: 78
     },
     "дефолт": {
         titles: ["Топове пропозиція у цій категорії | Швидко", "Найкраща ціна на ринку | Моментальна видача", "Предмети / Валюта / Цінності зі знижкою"],
         descriptions: ["Найвигідніша пропозиція на платформі. Передача товару або надання послуги займає від 5 до 15 хвилин після оплати."],
-        priceMin: 50, priceMax: 1000, unit: "₴"
+        priceMin: 50, priceMax: 1000, unit: "₴", counts: 564
     }
 };
 
@@ -81,6 +82,7 @@ const generateAllProducts = (): ProductItem[] => {
             for (let i = 0; i < itemsCount; i++) {
                 const randomSeller = sellers[Math.floor(Math.random() * sellers.length)];
                 const randomRating = (4.5 + Math.random() * 0.5).toFixed(1);
+                const randomCount = Math.floor(Math.random() * 1000) + 1;
                 const randomReviews = Math.floor(Math.random() * 800) + 15;
                 const randomPrice = Math.floor(Math.random() * (template.priceMax - template.priceMin)) + template.priceMin;
 
@@ -97,6 +99,7 @@ const generateAllProducts = (): ProductItem[] => {
                     description: template.descriptions[0],
                     seller: randomSeller,
                     sellerRating: randomRating,
+                    productCount: randomCount,
                     reviewsCount: randomReviews,
                     price: `${randomPrice} ${template.unit}`
                 });
