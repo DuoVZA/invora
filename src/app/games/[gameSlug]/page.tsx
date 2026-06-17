@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { gameDatabase } from "@/data/gameData"; 
+import { gameDatabase } from "@/data/gameData";
 import { slugify } from "@/utils/slugify";
 import { productsDatabase } from "@/data/productsData";
 import GameFilters from "@/components/gameFilters"; // Проверьте корректность пути
@@ -31,10 +31,13 @@ export default async function GamePage({ params, searchParams }: GamePageProps) 
     // Ищем оригинальное (красивое) имя категории для заголовка
     const currentCategoryName = game.categories ? (game.categories.find(cat => slugify(cat) === activeCategory) || activeCategory) : activeCategory;
 
+    console.log("Game:", game.name);
+    console.log("Options:", game.options);
+
     return (
         <div className="min-h-screen bg-zinc-50 text-black p-6">
             <div className="max-w-5xl mx-auto">
-                
+
                 {/* Хлебные крошки */}
                 <div className="text-sm text-black mb-6 flex items-center flex-wrap gap-2 select-none">
                     <Link href="/" className="text-black hover:text-[#4384D0] transition">
@@ -65,11 +68,10 @@ export default async function GamePage({ params, searchParams }: GamePageProps) 
                             <Link
                                 key={cat}
                                 href={`/games/${decodedGameSlug}?category=${btnSlug}`}
-                                className={`px-4 py-2.5 font-medium text-sm border-b-2 transition-all whitespace-nowrap ${
-                                    isSelected 
-                                        ? "border-[#4E8AD6] text-[#4E8AD6] bg-blue-50/50" 
+                                className={`px-4 py-2.5 font-medium text-sm border-b-2 transition-all whitespace-nowrap ${isSelected
+                                        ? "border-[#4E8AD6] text-[#4E8AD6] bg-blue-50/50"
                                         : "border-transparent text-zinc-500 hover:text-zinc-900"
-                                }`}
+                                    }`}
                             >
                                 {cat}
                             </Link>
@@ -77,7 +79,7 @@ export default async function GamePage({ params, searchParams }: GamePageProps) 
                     })}
                 </div>
 
-                <GameFilters categoryName={currentCategoryName} />
+                <GameFilters categoryName={currentCategoryName} options={game.options} />
 
                 {/* ТАБЛИЦА ЛОТОВ */}
                 <div className="bg-white border border-zinc-200 rounded-xl overflow-hidden shadow-sm">
@@ -92,7 +94,7 @@ export default async function GamePage({ params, searchParams }: GamePageProps) 
                     <div className="divide-y divide-zinc-100">
                         {filteredProducts.length > 0 ? (
                             filteredProducts.map((product) => (
-                                <Link 
+                                <Link
                                     key={product.id}
                                     href={`/games/${decodedGameSlug}/${product.id}`}
                                     className="grid grid-cols-12 px-4 py-4 items-center hover:bg-zinc-50/80 transition group"
@@ -105,7 +107,7 @@ export default async function GamePage({ params, searchParams }: GamePageProps) 
                                     <div className="col-span-2 text-sm text-zinc-600">
                                         {product.seller}
                                     </div>
-                                    
+
                                     {/* Центрированный контейнер для ценника */}
                                     <div className="col-span-2 flex justify-center items-center">
                                         <div className="bg-[#BFFFAF] px-4 py-1.5 rounded-lg text-sm font-bold text-zinc-900 group-hover:bg-[#a9f598] group-hover:text-zinc-950 transition-all text-center min-w-[75px]">
